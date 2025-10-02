@@ -2,15 +2,6 @@ package org.squares.engine;
 
 import java.util.*;
 
-/**
- * SquaresEngine - независимый движок игры "квадраты".
- * Поддерживает:
- *  - parse BoardDto -> internal char[][]
- *  - computeNextMove(BoardDto) -> SimpleMoveDto (или null)
- *  - evaluateBoard(BoardDto) -> GameStatusDto
- *
- * Стратегия хода по умолчанию: первая свободная клетка сверху-лево->право.
- */
 public class SquaresEngine {
 
     public SimpleMoveDto computeNextMove(BoardDto dto) {
@@ -22,7 +13,7 @@ public class SquaresEngine {
         }
         GameStatusDto status = evaluateBoardInternal(board);
         if (status.getStatus() != 0) {
-            return null; // игра закончена или ошибка
+            return null;
         }
         int n = board.length;
         char color = normalizeColorChar(dto.getNextPlayerColor());
@@ -47,7 +38,6 @@ public class SquaresEngine {
         return evaluateBoardInternal(board);
     }
 
-    // ---------- private helpers ----------
 
     private GameStatusDto evaluateBoardInternal(char[][] board) {
         int n = board.length;
@@ -117,19 +107,25 @@ public class SquaresEngine {
     }
 
     private char[][] parseBoard(BoardDto dto) {
+
         if (dto == null) throw new IllegalArgumentException("BoardDto is null");
         int size = dto.getSize();
         if (size <= 2) throw new IllegalArgumentException("size must be > 2");
         String raw = dto.getData();
         if (raw == null) throw new IllegalArgumentException("data is null");
+
         StringBuilder sb = new StringBuilder();
+
         for (char ch : raw.toCharArray()) {
             if (ch == '\n' || ch == '\r') continue;
             sb.append(ch);
         }
+
         String s = sb.toString();
+
         if (s.length() != size * size)
-            throw new IllegalArgumentException("data length mismatch: expected " + (size * size) + " but got " + s.length());
+            throw new IllegalArgumentException("data length mismatch: expected " + (size * size)+ " but got " + s.length());
+
         char[][] board = new char[size][size];
         int idx = 0;
         for (int y = 0; y < size; y++) {
