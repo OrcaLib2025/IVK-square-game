@@ -8,9 +8,6 @@ import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
 
-/**
- * Simple static file server from resources/www
- */
 public class StaticHandler implements HttpHandler {
     private final String baseResourcePath;
 
