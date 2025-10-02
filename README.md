@@ -9,7 +9,7 @@
 
 ## Сборка
 В корне проекта выполните:
-mvn -DskipTests package
+mvn package или mvn -DskipTests package
 Эта команда подтянет все зависимости.
 
 Запуск первого задания (cli игра) - java -jar cli/target/cli-1.0.0.jar
