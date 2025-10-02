@@ -12,5 +12,5 @@
 mvn package или mvn -DskipTests package
 Эта команда подтянет все зависимости.
 
-Запуск первого задания (cli игра) - java -jar cli/target/cli-1.0.0.jar
-Запуск сервера (второе и третье задание) - java -jar server/target/server-1.0.0.jar
+- Запуск первого задания (cli игра) - java -jar cli/target/cli-1.0.0.jar
+- Запуск сервера (второе и третье задание) - java -jar server/target/server-1.0.0.jar
